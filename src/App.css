@@ -1,42 +1,101 @@
+body {
+  overflow-x: hidden;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f7f7f7;
+  overflow-x: hidden; /* Add this */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.hero {
+  position: relative;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 0;
+  width: 100vw;
+  height: 56vw;
+  left: 50%;
+  right: 49%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.hero-img {
+  width: 114vw;
+  margin-top: -5vw;
+  display: block;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.hero-content {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  color: #fff;
+  text-align: left;
+}
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rooms {
+  margin-bottom: 2rem;
+}
+.rooms h2 {
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+.room-list {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.room-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1rem;
+  width: 250px;
+  text-align: left;
+}
+.room-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+.room-card h3 {
+  margin: 0.5rem 0 0.2rem 0;
+  color: #333;
+}
+.room-card p {
+  font-size: 0.95rem;
+  color: #666;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.services, .gallery, .testimonials {
+  margin-bottom: 2rem;
+}
+.services h2, .gallery h2, .testimonials h2 {
+  color: #007bff;
+  margin-bottom: 1rem;
 }
 
-.card {
-  padding: 2em;
+.footer {
+  background: #222;
+  color: #fff;
+  padding: 2rem 0 1rem 0;
+  margin-top: 2rem;
+  font-size: 1rem;
+  width: 100vw;
+  position: relative;
+  border-radius: 0;
 }
 
-.read-the-docs {
-  color: #888;
-}
