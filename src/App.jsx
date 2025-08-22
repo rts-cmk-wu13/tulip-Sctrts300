@@ -1,34 +1,40 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "../assets/thetuliplogo.svg";
+import Middlepic from "../assets/unsplash_emqnSQwQQDo.png";
 
 function App() {
-  const [hero, setHero] = useState(null);
+  const [hero, setHero] = useState({ image: "", headline: "" });
   const [rooms, setRooms] = useState([]);
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:4000/hero")
       .then((res) => res.json())
-      .then((data) => setHero(data))
+      .then((data) => {
+        console.log("Hero:", data);
+        setHero(data);
+      })
       .catch(console.error);
 
     fetch("http://localhost:4000/rooms")
       .then((res) => res.json())
       .then((data) => {
-        if (Array.isArray(data.roomtypes)) setRooms(data.roomtypes);
-        else setRooms([]);
+        console.log("Rooms:", data);
+        setRooms(data.roomtypes || []);
       })
       .catch(console.error);
 
     fetch("http://localhost:4000/services")
       .then((res) => res.json())
       .then((data) => {
-      
+        console.log("Services:", data);
+        setServices(data.facilities || []);
       })
       .catch(console.error);
   }, []);
 
-  console.log(rooms);
+  console.log(services);
 
   if (!hero) return <div>Loading...</div>;
 
@@ -44,10 +50,10 @@ function App() {
             <li>Booking</li>
           </ul>
           <div className="hero-social">
-            <a href="#"><span role="img" aria-label="Instagram"></span></a>
-            <a href="#"><span role="img" aria-label="Facebook"></span></a>
-            <a href="#"><span role="img" aria-label="YouTube"></span></a>
-            <a href="#"><span role="img" aria-label="Twitter"></span></a>
+            <a href="#"><span role="img" aria-label="Instagram">📸</span></a>
+<a href="#"><span role="img" aria-label="Facebook">📘</span></a>
+<a href="#"><span role="img" aria-label="YouTube">▶️</span></a>
+<a href="#"><span role="img" aria-label="Twitter">🐦</span></a>
           </div>
         </nav>
         <img src={hero.image} alt="Hotel Pool" className="hero-img" />
@@ -73,8 +79,8 @@ function App() {
                 <div className="room-img-wrapper">
                   <img src={room.image} alt={room.type} />
                   <div className="room-img-overlay">
-                    <span className="room-icon"></span> {room.guests} Guests
-                    <span className="room-icon" style={{marginLeft: "1rem"}}></span> {room.size} kvm
+                    <span className="room-icon" role="img" aria-label="bed">🛏️</span> {room.guests} Guests
+<span className="room-icon" role="img" aria-label="size" style={{marginLeft: "1rem"}}>📏</span> {room.size} kvm
                   </div>
                 </div>
                 <div className="room-info">
@@ -92,11 +98,27 @@ function App() {
           </div>
         </section>
 
-            <img src="" alt=""/>
+            <img className="middle" src={Middlepic} alt=""/>
 
         <section className="services">
-          <h2>Our Services</h2>
-          {}
+          <h2>
+            Our <span className="services-highlight">Services</span>
+          </h2>
+          <p className="services-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor viverra parturient diam sagittis nec cras.
+          </p>
+          <div className="services-list">
+            {services.map((service) => (
+              <div key={service.id} className="service-row">
+                <div className="service-info">
+                  <h3 className="service-title">{service.name}</h3>
+                  <p className="service-description">{service.text1}</p>
+                  <p className="service-description">{service.text2}</p>
+                </div>
+                <img src={service.image} alt={service.name} className="service-img" />
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="gallery">
