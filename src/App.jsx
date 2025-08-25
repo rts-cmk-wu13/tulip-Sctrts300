@@ -7,6 +7,8 @@ function App() {
   const [hero, setHero] = useState({ image: "", headline: "" });
   const [rooms, setRooms] = useState([]);
   const [services, setServices] = useState([]);
+  const [gallery, setGallery] = useState([]);
+  const [spots, setSpots] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:4000/hero")
@@ -32,6 +34,22 @@ function App() {
         setServices(data.facilities || []);
       })
       .catch(console.error);
+
+    fetch("http://localhost:4000/gallery")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Gallery:", data);
+        setGallery(data.images || []);
+      })
+      .catch(console.error);
+
+    fetch("http://localhost:4000/spots")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Spots:", data);
+        setSpots(Array.isArray(data) ? data : data.spots || []);
+      })
+      .catch(console.error);
   }, []);
 
   console.log(services);
@@ -51,12 +69,14 @@ function App() {
           </ul>
           <div className="hero-social">
             <a href="#"><span role="img" aria-label="Instagram">📸</span></a>
-<a href="#"><span role="img" aria-label="Facebook">📘</span></a>
-<a href="#"><span role="img" aria-label="YouTube">▶️</span></a>
-<a href="#"><span role="img" aria-label="Twitter">🐦</span></a>
+            <a href="#"><span role="img" aria-label="Facebook">📘</span></a>
+            <a href="#"><span role="img" aria-label="YouTube">▶️</span></a>
+            <a href="#"><span role="img" aria-label="Twitter">🐦</span></a>
           </div>
         </nav>
-        <img src={hero.image} alt="Hotel Pool" className="hero-img" />
+        {hero.image && (
+          <img src={hero.image} alt="Hotel Pool" className="hero-img" />
+        )}
         <div className="hero-content">
           <img src={logo} alt="Hotel logo" className="hero-logo" />
           <h1>{hero.headline}</h1>
@@ -80,7 +100,7 @@ function App() {
                   <img src={room.image} alt={room.type} />
                   <div className="room-img-overlay">
                     <span className="room-icon" role="img" aria-label="bed">🛏️</span> {room.guests} Guests
-<span className="room-icon" role="img" aria-label="size" style={{marginLeft: "1rem"}}>📏</span> {room.size} kvm
+                    <span className="room-icon" role="img" aria-label="size" style={{marginLeft: "1rem"}}>📏</span> {room.size} kvm
                   </div>
                 </div>
                 <div className="room-info">
@@ -121,9 +141,32 @@ function App() {
           </div>
         </section>
 
+        <section className="spots">
+          <div className="spots-grid">
+            {spots.map((spot, idx) => (
+              <div key={spot.id || idx} className="spot-card">
+                <div className="spot-icon">{spot.icon}</div>
+                <h4 className="spot-title">{spot.name}</h4>
+                <p className="spot-desc">{spot.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="gallery">
-          <h2>Our Gallery</h2>
-          {}
+          <h2>
+            Our <span className="gallery-highlight">Gallery</span>
+          </h2>
+          <p className="gallery-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor viverra parturient diam sagittis nec cras.
+          </p>
+          <div className="gallery-grid">
+            {gallery.map((img, idx) => (
+              <div key={img.id || idx} className="gallery-item">
+                <img src={img.url} alt={`Gallery ${idx + 1}`} />
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="testimonials">
