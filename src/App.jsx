@@ -9,8 +9,10 @@ function App() {
   const [services, setServices] = useState([]);
   const [gallery, setGallery] = useState([]);
   const [spots, setSpots] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
+    
     fetch("http://localhost:4000/hero")
       .then((res) => res.json())
       .then((data) => {
@@ -50,11 +52,25 @@ function App() {
         setSpots(Array.isArray(data) ? data : data.spots || []);
       })
       .catch(console.error);
+
+    fetch("http://localhost:4000/reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Testimonials:", data);
+        if (Array.isArray(data.testimonials)) {
+          setTestimonials(data.testimonials);
+        } else {
+          setTestimonials([]);
+        }
+      })
+      .catch(console.error);
   }, []);
 
   console.log(services);
 
   if (!hero) return <div>Loading...</div>;
+
+  console.log("Testimonials state:", testimonials);
 
   return (
     <div>
@@ -170,11 +186,33 @@ function App() {
         </section>
 
         <section className="testimonials">
-          <h2>What People Say</h2>
-          {}
+          <h2>
+            What <span className="testimonials-highlight">People Say</span>
+          </h2>
+          <p className="testimonials-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor viverra parturient diam sagittis nec cras.
+          </p>
+          <div className="testimonials-list">
+            {testimonials.map((t) => (
+              <div key={t.id} className="testimonial-card">
+                <p className="testimonial-text">{t.text}</p>
+                <div className="testimonial-stars">
+                  {Array.from({ length: t.stars }).map((_, i) => (
+                    <span key={i} role="img" aria-label="star">⭐</span>
+                  ))}
+                </div>
+                <div className="testimonial-user">
+                  <img src={t.imageUrl} alt={t.name} className="testimonial-avatar" />
+                  <div>
+                    <div className="testimonial-name">{t.name}</div>
+                    <div className="testimonial-username">{t.handle}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
-
       <footer className="footer">
         <p>&copy; The Tulip</p>
         {/* Add footer content here */}
