@@ -194,12 +194,21 @@ function App() {
           </p>
           <div className="testimonials-list">
             {testimonials.map((t) => (
-              <div key={t.id} className="testimonial-card">
-                <p className="testimonial-text">{t.text}</p>
-                <div className="testimonial-stars">
-                  {Array.from({ length: t.stars }).map((_, i) => (
-                    <span key={i} role="img" aria-label="star">⭐</span>
-                  ))}
+              <div key={t.id} className="testimonial-group">
+                <div className="testimonial-card">
+                  <p className="testimonial-text">{t.text}</p>
+                  <div className="testimonial-stars">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span
+                        key={i}
+                        role="img"
+                        aria-label={i < t.stars ? "star" : "star-outline"}
+                        style={{ color: i < t.stars ? "#ff9900" : "#ddd" }}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <div className="testimonial-user">
                   <img src={t.imageUrl} alt={t.name} className="testimonial-avatar" />
@@ -213,9 +222,54 @@ function App() {
           </div>
         </section>
       </div>
+
+            <br />
+
       <footer className="footer">
-        <p>&copy; The Tulip</p>
-        {/* Add footer content here */}
+        <div className="footer-content">
+          <div className="footer-col">
+            <div className="footer-logo">
+              <img src={logo} alt="The Tulip" />
+            </div>
+            <div className="footer-desc">
+              Lorem ipsum dolor sit amet,<br />consectetur
+            </div>
+            <div className="footer-social">
+              <a href="#"><span role="img" aria-label="Instagram">📸</span></a>
+              <a href="#"><span role="img" aria-label="Facebook">📘</span></a>
+              <a href="#"><span role="img" aria-label="YouTube">▶️</span></a>
+              <a href="#"><span role="img" aria-label="Twitter">🐦</span></a>
+            </div>
+            <input className="footer-input" placeholder="Your email address" />
+          </div>
+          <div className="footer-col">
+            <div className="footer-title">Services</div>
+            <ul className="footer-list">
+              <li>Restaurat</li>
+              <li>Coffe Shop</li>
+              <li>Car Wash</li>
+              <li>Cycle Rent</li>
+              <li>Car Rent</li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <div className="footer-title">Reach Us</div>
+            <div className="footer-contact">
+              <div className="footer-contact-item">
+                <span className="icon" role="img" aria-label="mail">✉️</span>
+                mail@hotel.us
+              </div>
+              <div className="footer-contact-item">
+                <span className="icon" role="img" aria-label="phone">📱</span>
+                (239) 555-0108
+              </div>
+              <div className="footer-contact-item">
+                <span className="icon" role="img" aria-label="location">📍</span>
+                6391 Elgin St. Celina,<br />Delaware 10299
+              </div>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
