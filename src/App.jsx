@@ -2,6 +2,18 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "../assets/thetuliplogo.svg";
 import Middlepic from "../assets/unsplash_emqnSQwQQDo.png";
+import { FaCarAlt, FaUtensils, FaSpa, FaWifi, FaHeartbeat, FaBeer, FaStar, FaGamepad, FaCamera, FaFacebookSquare, FaYoutube, FaTwitter, FaEnvelope, FaMapPin, FaPhoneAlt } from "react-icons/fa";
+
+let icons = {
+  carAlt: <FaCarAlt/>,
+  utensils: <FaUtensils/>,
+  spa: <FaSpa/>,
+  wifi: <FaWifi/>,
+  heartbeat: <FaHeartbeat/>,
+  beer: <FaBeer/>,
+  star: <FaStar/>,
+  gamepad: <FaGamepad/>
+};
 
 function App() {
   const [hero, setHero] = useState({ image: "", headline: "" });
@@ -84,10 +96,10 @@ function App() {
             <li>Booking</li>
           </ul>
           <div className="hero-social">
-            <a href="#"><span role="img" aria-label="Instagram">📸</span></a>
-            <a href="#"><span role="img" aria-label="Facebook">📘</span></a>
-            <a href="#"><span role="img" aria-label="YouTube">▶️</span></a>
-            <a href="#"><span role="img" aria-label="Twitter">🐦</span></a>
+            <a href="#"><FaCamera aria-label="Instagram" /></a>
+            <a href="#"><FaFacebookSquare aria-label="Facebook" /></a>
+            <a href="#"><FaYoutube aria-label="Youtube" /></a>
+            <a href="#"><FaTwitter aria-label="Twitter" /></a>
           </div>
         </nav>
         {hero.image && (
@@ -95,13 +107,15 @@ function App() {
         )}
         <div className="hero-content">
           <img src={logo} alt="Hotel logo" className="hero-logo" />
-          <h1>{hero.headline}</h1>
+          <div className="hero-headline">Up to 60% OFF</div>
+          <div className="hero-subheadline">On Hotel Booking Online</div>
           <button className="hero-btn">Book Now</button>
         </div>
       </section>
 
       
       <div className="case">
+
         <section className="rooms">
           <h2>
             Our <span className="rooms-highlight">Rooms</span>
@@ -109,11 +123,12 @@ function App() {
           <p className="rooms-desc">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempor viverra parturient diam sagittis nec cras.
           </p>
+          <br />
           <div className="room-list">
             {rooms.map((room) => (
               <div key={room.id} className="room-card">
                 <div className="room-img-wrapper">
-                  <img src={room.image} alt={room.type} />
+                  <img className="room-img" src={room.image} alt={room.type} />
                   <div className="room-img-overlay">
                     <span className="room-icon" role="img" aria-label="bed">🛏️</span> {room.guests} Guests
                     <span className="room-icon" role="img" aria-label="size" style={{marginLeft: "1rem"}}>📏</span> {room.size} kvm
@@ -134,7 +149,11 @@ function App() {
           </div>
         </section>
 
+          <br />
+
             <img className="middle" src={Middlepic} alt=""/>
+
+          <br />
 
         <section className="services">
           <h2>
@@ -157,17 +176,21 @@ function App() {
           </div>
         </section>
 
+        <br />
+
         <section className="spots">
           <div className="spots-grid">
             {spots.map((spot, idx) => (
               <div key={spot.id || idx} className="spot-card">
-                <div className="spot-icon">{spot.icon}</div>
+                <div className="spot-icon">{icons[spot.icon]}</div>
                 <h4 className="spot-title">{spot.name}</h4>
                 <p className="spot-desc">{spot.text}</p>
               </div>
             ))}
           </div>
         </section>
+
+        <br />
 
         <section className="gallery">
           <h2>
@@ -184,6 +207,8 @@ function App() {
             ))}
           </div>
         </section>
+
+        <br />
 
         <section className="testimonials">
           <h2>
@@ -235,10 +260,10 @@ function App() {
               Lorem ipsum dolor sit amet,<br />consectetur
             </div>
             <div className="footer-social">
-              <a href="#"><span role="img" aria-label="Instagram">📸</span></a>
-              <a href="#"><span role="img" aria-label="Facebook">📘</span></a>
-              <a href="#"><span role="img" aria-label="YouTube">▶️</span></a>
-              <a href="#"><span role="img" aria-label="Twitter">🐦</span></a>
+              <a href="#"><FaCamera aria-label="Instagram" /></a>
+              <a href="#"><FaFacebookSquare aria-label="Facebook" /></a>
+              <a href="#"><FaYoutube aria-label="Youtube" /></a>
+              <a href="#"><FaTwitter aria-label="Twitter" /></a>
             </div>
             <input className="footer-input" placeholder="Your email address" />
           </div>
@@ -256,15 +281,15 @@ function App() {
             <div className="footer-title">Reach Us</div>
             <div className="footer-contact">
               <div className="footer-contact-item">
-                <span className="icon" role="img" aria-label="mail">✉️</span>
+                <a href="#"><FaEnvelope aria-label="Mail" /></a>
                 mail@hotel.us
               </div>
               <div className="footer-contact-item">
-                <span className="icon" role="img" aria-label="phone">📱</span>
+                <a href="#"><FaPhoneAlt aria-label="Phone" /></a>
                 (239) 555-0108
               </div>
               <div className="footer-contact-item">
-                <span className="icon" role="img" aria-label="location">📍</span>
+               <a href="#"><FaMapPin aria-label="location" /></a>
                 6391 Elgin St. Celina,<br />Delaware 10299
               </div>
             </div>
