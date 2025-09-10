@@ -195,7 +195,78 @@ body {
 
 /* ---------------------------------------------------------------------- */
 
-.rooms {
+.booking-bar {
+  position: absolute;
+  left: 50%;
+  top: 53.5rem;
+  transform: translateX(-50%);
+  background: #0083CA;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 1.2rem 1.4rem;
+  z-index: 10;
+  min-width: 900px;
+  height: 5rem;
+}
+
+.booking-input {
+  background: #fff;
+  border-radius: 6px;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1.4rem;
+  min-width: 170px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  position: relative;
+  gap: 0;
+}
+
+.booking-input input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  width: 100%;
+  padding-right: 2rem; 
+  
+}
+
+.booking-icon {
+  color: #F47920;
+  font-size: 1.2rem;
+  position: absolute; 
+  right: 1rem;       
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.booking-input input[type="date"] {
+  padding-right: 0;
+  color: #F47920;
+}
+
+.booking-btn {
+  background: #F47920;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  white-space: nowrap;
+  padding: 0.8rem 2.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: background 0.2s;
+}
+
+/* ---------------------------------------------------------------------- */
+
+.rooms {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
   max-width: 1120px;
   text-align: center;
 }
@@ -653,6 +724,13 @@ body {
   margin-bottom: 1rem;
   letter-spacing: 2px;
 }
+[aria-label="star"] {
+  color: #ff9900;
+
+}
+[aria-label="star-outline"] {
+  color: #ddd;
+}
 
 .testimonial-user {
   display: flex;
@@ -682,7 +760,7 @@ body {
   margin-bottom: 0.2rem;
 }
 
-
+/* ---------------------------------------------------------------------- */
 
 footer {
   width: 100vw;
@@ -704,14 +782,16 @@ footer {
   max-width: 1120px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-start;
   gap: 2rem;
 }
 
 .footer-col {
-  flex: 1;
   min-width: 220px;
+}
+.footer-col:first-of-type {
+  margin-right: auto;
 }
 
 .footer-logo {

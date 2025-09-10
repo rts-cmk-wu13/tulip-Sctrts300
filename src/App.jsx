@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "../assets/thetuliplogo.svg";
 import Middlepic from "../assets/unsplash_emqnSQwQQDo.png";
-import { FaCarAlt, FaUtensils, FaSpa, FaWifi, FaHeartbeat, FaBeer, FaStar, FaGamepad, FaCamera, FaFacebookSquare, FaYoutube, FaTwitter, FaEnvelope, FaMapPin, FaPhoneAlt } from "react-icons/fa";
+import { FaCarAlt, FaUtensils, FaSpa, FaWifi, FaHeartbeat, FaBeer, FaStar, FaGamepad, 
+  FaCamera, FaFacebookSquare, FaYoutube, FaTwitter, FaEnvelope, FaMapPin, FaPhoneAlt } from "react-icons/fa";
+import { RiGroupLine } from "react-icons/ri";
+import { PiPersonArmsSpread } from "react-icons/pi";
+
 
 let icons = {
   carAlt: <FaCarAlt/>,
@@ -112,8 +116,25 @@ function App() {
           <button className="hero-btn">Book Now</button>
         </div>
       </section>
+        <div className="booking-bar">
+        <div className="booking-input">
+          <input className="booking-cal" type="date"/>          
+        </div>
+        <div className="booking-input">
+          <input className="booking-cal" type="date"/>
+        </div>
+        <div className="booking-input">
+          <input type="name" min="1" placeholder="Adults" />
+          <span className="booking-icon"><RiGroupLine /></span>
+        </div>
+        <div className="booking-input">
+          <input type="name" min="0" placeholder="Children" />
+          <span className="booking-icon"><PiPersonArmsSpread /></span>
+        </div>
+        <button className="booking-btn">Book Now</button>
+      </div>
 
-      
+      <br />
       <div className="case">
 
         <section className="rooms">
@@ -228,7 +249,6 @@ function App() {
                         key={i}
                         role="img"
                         aria-label={i < t.stars ? "star" : "star-outline"}
-                        style={{ color: i < t.stars ? "#ff9900" : "#ddd" }}
                       >
                         ★
                       </span>
