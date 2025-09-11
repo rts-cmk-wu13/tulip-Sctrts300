@@ -118,10 +118,10 @@ function App() {
       </section>
         <div className="booking-bar">
         <div className="booking-input">
-          <input className="booking-cal" type="date"/>          
+          <span><input className="booking-cal" type="date"/></span>          
         </div>
         <div className="booking-input">
-          <input className="booking-cal" type="date"/>
+          <span><input className="booking-cal" type="date"/></span>
         </div>
         <div className="booking-input">
           <input type="name" min="1" placeholder="Adults" />
